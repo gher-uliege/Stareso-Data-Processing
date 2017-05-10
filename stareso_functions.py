@@ -1,5 +1,7 @@
+import os
 import logging
 import numpy as np
+import netCDF4
 
 
 def configure_logging():
@@ -62,4 +64,33 @@ def read_lonlat_coast(filename, valex=999):
                 lat.append(float(line[1]))
             line = f.readline().rsplit()
     return lonall, latall
+
+def load_sst_l2(filename):
+    """
+    Load the SST from netCDF L2 file obtained from
+    https://oceancolor.gsfc.nasa.gov
+    :param filename: name of the netCDF file
+    :return: lon, lat, sst, sstflag, sstyear, sstday
+    """
+    if os.path.exists(filename):
+        with netCDF4.Dataset(filename) as nc:
+            # Read platform
+            sat = nc.platform
+            # Read time information
+            # Assume all the measurements made the same day (and same year)
+            year = nc.groups['scan_line_attributes'].variables['year'][0]
+            day = nc.groups['scan_line_attributes'].variables['day'][0]
+            # Read coordinates
+            lon = nc.groups['navigation_data'].variables['longitude'][:]
+            lat = nc.groups['navigation_data'].variables['latitude'][:]
+            # Read geophysical variables
+            try:
+                sst = nc.groups['geophysical_data'].variables['sst'][:]
+                sstqual = nc.groups['geophysical_data'].variables['qual_sst'][:]
+            except KeyError:
+                sst = nc.groups['geophysical_data'].variables['sst4'][:]
+                sstqual = nc.groups['geophysical_data'].variables['qual_sst4'][:]
+    else:
+        lon, lat, sst, sstqual, year, day, sat = [], [], [], [], [], [], []
+    return lon, lat, sst, sstqual, year, day, sat
 

@@ -6,9 +6,13 @@ A project to store the tools developped to process the CTD, ADCP and meteorologi
 
 A set of jupyter-notebooks providing examples of how to access the data files through the [RACE database](http://www.gitan.ulg.ac.be/cms/index.php?page=donnees-de-stareso#1.), read the data from the files and create some plots and basic analysis.
 
+<img src="./figures/windrose-20170511.png" width="400" />
+
 ## Leaflet
 
 A simple example of a [leaflet](map) displaying the CTD stations along with other layers such as the [EMODnet Bathymetry](http://www.emodnet-bathymetry.eu/).
+
+![alt text](./figures/leafletstareso.png "Leaflet map around Calvi")
 
 ## Images
 

@@ -8,6 +8,17 @@ A set of jupyter-notebooks providing examples of how to access the data files th
 
 <img src="./figures/windrose-20170511.png" width="400" />
 
+### Virtual environment
+
+```bash
+mkvirtualenv -p python3.10 RaceDB
+workon RaceDB
+pip install psycopg2
+pip install matplotlib
+pip install ipykernel
+python -m ipykernel install --user --name RaceDB
+```
+
 ## Leaflet
 
 A simple example of a [leaflet](map) displaying the CTD stations along with other layers such as the [EMODnet Bathymetry](http://www.emodnet-bathymetry.eu/).

@@ -2,7 +2,7 @@
 
 # Stareso-Data-Processing
 
-A project to store the tools developped to process the CTD, ADCP and meteorological data acquired in STARESO as well as Sea Surface Temperature data obtained from [Ocean Color](https://oceancolor.gsfc.nasa.gov/).
+This projects contains mainly Jupyter notebooks in different languages, to demonstrate how to access data from the RACE data base and analyse them.
 
 ## Notebooks
 
